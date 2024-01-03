@@ -165,3 +165,4 @@ test_interval_turb.ipynb
 wake_interval_pod.ipynb
 notebooks/wake_basic_pod.ipynb
 images/
+*.pkl

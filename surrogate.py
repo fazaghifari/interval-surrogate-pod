@@ -298,7 +298,7 @@ def field_plot(reference, predicted, sim_id=42, reshape_size=(100,100),
         plt.show()
 
 
-def error_plot(meanreg_data, ccrm_data, data_fraction, savefile="images/bridge_rmse.png"):
+def error_plot(meanreg_data, ccrm_data, data_fraction, savefile="images/bridge_rmse.png", ylim=[0.0001, 0.0007]):
     """Function for plotting error
 
     Args:
@@ -306,6 +306,7 @@ def error_plot(meanreg_data, ccrm_data, data_fraction, savefile="images/bridge_r
         ccrm_data (list): list of ccrm regression data.
         data_fraction (list): list of data fraction that evaluated.
         savefile (str): image save file location
+        ylim (list): y axis limits
     """
 
     mpl.rc('font', **{'family': 'serif', 'serif': ['Computer Modern']})
@@ -330,7 +331,7 @@ def error_plot(meanreg_data, ccrm_data, data_fraction, savefile="images/bridge_r
     ax2.set_xlabel(r"$\%$ \textbf{of training data fraction}")
     ax1.set_ylabel(r"\textbf{RMSE} ($m$)")
 
-    ax1.set_ylim([0.0001, 0.0007])
+    ax1.set_ylim(ylim)
     ax1.set_xticks([5,10,15,20])
     ax2.set_xticks([5,10,15,20])
 
