@@ -332,8 +332,8 @@ def error_plot(meanreg_data, ccrm_data, data_fraction, savefile="images/bridge_r
     ax1.set_ylabel(r"\textbf{RMSE} ($m$)")
 
     ax1.set_ylim(ylim)
-    ax1.set_xticks([5,10,15,20])
-    ax2.set_xticks([5,10,15,20])
+    ax1.set_xticks(data_fraction)
+    ax2.set_xticks(data_fraction)
 
     plt.legend()
     plt.savefig(savefile, dpi=400, format="png")
