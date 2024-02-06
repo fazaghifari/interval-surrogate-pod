@@ -339,6 +339,28 @@ def error_plot(meanreg_data, ccrm_data, data_fraction, savefile="images/bridge_r
     plt.savefig(savefile, dpi=400, format="png")
     plt.show()
 
+def violation_check(actual_snap, pred_snap):
+    # lower bound
+    # predicted lowerbound <= actual lowerbound
+    actual_lb = actual_snap[:,:,0]
+    pred_lb = pred_snap[:,:,0]
+    n_violate_lb = 0
+    for col in range(actual_lb.shape[1]):
+        violation_lb = np.sum(pred_lb[:,col] > actual_lb[:,col])
+        n_violate_lb += np.minimum(1,violation_lb)  # if violation > 1, assign 1. else, 0
+    lb_violation = n_violate_lb/actual_lb.shape[1]
+
+    # upper bound
+    # predicted upperbound >= actual upperbound
+    actual_ub = actual_snap[:,:,1]
+    pred_ub = pred_snap[:,:,1]
+    n_violate_ub = 0
+    for col in range(actual_ub.shape[1]):
+        violation_ub = np.sum(pred_ub[:,col] < actual_ub[:,col])
+        n_violate_ub += np.minimum(1,violation_ub)  # if violation > 1, assign 1. else, 0
+    ub_violation = n_violate_ub/actual_ub.shape[1]
+
+    return ub_violation, lb_violation
 
 def main(config):
     """Main function
