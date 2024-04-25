@@ -162,7 +162,7 @@ def train_pce(x, pod_coeff, x1_domain, x2_domain, fit_range=False):
         x_radii = x[:,:,1].copy()
         pce_radii = []
         for i in range(pod_coeff_radii.T.shape[1]):
-            surrogate,coefs = chaospy.fit_regression(expansion, x_mean.T, pod_coeff_radii.T[:,i].reshape(-1,1), 
+            surrogate,coefs = chaospy.fit_regression(expansion, x_radii.T, pod_coeff_radii.T[:,i].reshape(-1,1), 
                                                     model=model_radii, retall=True)
             pce_radii.append(surrogate)
 
